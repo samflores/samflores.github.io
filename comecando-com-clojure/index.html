@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Começando com Clojure</title>
+    <meta name="description" content="Há mais ou menos dois anos eu resolvi me aprofundar no estudo de linguagens deprogramação funcionais. Entre as candidatas estavam Scala, Erlang, Haskele Cloj...">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911|Anonymous+Pro">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="canonical" href="http://blog.samflor.es/comecando-com-clojure">
+    <link rel="alternate" type="application/rss+xml" title="Sparse Thoughts" href="http://blog.samflor.es/feed.xml" />
+</head>
+
+
+<body>
+    <article class="post">
+    <h1><a href="/"><span>Sparse Thoughts</span></a>Começando com Clojure</h1>
+    <aside>
+        <time datetime="2015-09-07 21:50">
+            Sep 7, 2015
+        </time>
+        
+        
+    </aside>
+    <p>Há mais ou menos dois anos eu resolvi me aprofundar no estudo de <em>linguagens de
+programação funcionais</em>. Entre as candidatas estavam <em>Scala</em>, <em>Erlang</em>, <em>Haskel</em>
+e <em>Clojure</em>.</p>
+
+<p>Clojure estava em último lugar na minha lista de interesses devido à
+experiências anteriores não muito agradáveis com outros <em>Lisps</em>, mas depois de
+ler uma citação do <em>Richard Stallman</em> achei que deveria tentar de novo (não que
+eu costume concordar com ele, mas fiquei curioso):</p>
+
+<blockquote>
+  <p>The most powerful programming language is Lisp. If you don’t know Lisp (or its
+variant, Scheme), you don’t know what it means for a programming language to
+be powerful and elegant. Once you learn Lisp, you will understand what is
+lacking in most other languages.</p>
+</blockquote>
+
+<h2 id="o-que--clojure">O que é Clojure?</h2>
+
+<p>Clojure é um <em>Lisp</em> (eu sei que já deu pra entender isso) e compartilha
+características comuns à maioria deles, ou seja, Clojure é uma linguagem:</p>
+
+<ul>
+  <li>primariamente funcional;</li>
+  <li>dinâmica;</li>
+  <li>fortemente tipada;</li>
+  <li>homoicônica;</li>
+</ul>
+
+<p>Além de ter suas características próprias:</p>
+
+<ul>
+  <li>roda na <a href="http://en.wikipedia.org/wiki/Java_virtual_machine">JVM</a> <sup id="fnref:1"><a href="#fn:1" class="footnote">1</a></sup>;</li>
+  <li>foco na imutabilidade;</li>
+  <li>primitivas de concorrência/paralelismo poderosas;</li>
+  <li>criada por <a href="https://twitter.com/richhickey">Rich Hickey</a> (isso parece ser uma <em>feature</em> também).</li>
+</ul>
+
+<p><em>Nossa, quanta coisa legal!  Mas o que significa isso tudo mesmo?</em></p>
+
+<p>Boa pergunta, curioso leitor. Pretendo respondê-la neste e em outros posts
+futuros, mas primeiro vamos ver com o que ela se parece.</p>
+
+<h2 id="primeiro-contato">Primeiro contato</h2>
+
+<p>Não poderia fazer um artigo introduzindo uma linguagem de programação sem o
+clássico <em>hello world</em>, certo? Pois aqui vai ele:</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="nb">println </span><span class="s">&quot;Hello, world&quot;</span><span class="p">)</span></code></pre></div>
+
+<p>Nada mal, hein?  <code class="highlight language-clojure"><span class="nv">println</span></code> é uma função que recebe como
+parâmetro a string <code class="highlight language-clojure"><span class="s">&quot;Hello world&quot;</span></code>. Tirando o posicionamento
+estranho dos parênteses, parece-se muito com a maioria das linguagens de script
+por aí.</p>
+
+<p>E é exatamente esta utilização dos parênteses que reflete as origens da
+linguagem. <em>Lisp</em> vem de <em><strong>LIS</strong>t <strong>P</strong>rocessing</em>, ou Processamento de Listas.
+Uma lista é uma estrutura de dados similar aos conhecidos <em>Arrays</em> de outras
+linguagens.</p>
+
+<div class="highlight"><pre><code class="language-javascript"><span class="c1">// JavaScript</span>
+<span class="p">[</span><span class="s2">&quot;Dexter Morgan&quot;</span><span class="p">,</span> <span class="s2">&quot;Hannibal Lecter&quot;</span><span class="p">,</span> <span class="s2">&quot;Patrick Bateman&quot;</span><span class="p">]</span></code></pre></div>
+
+<p>Troque os colchetes por parênteses e remova as vírgulas — ou não, vírgulas
+são consideradas <em>whitespace</em> em Clojure — e você terá uma lista.</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="c1">;; Essas duas listas são equivalentes</span>
+<span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;Dexter Morgan&quot;</span> <span class="s">&quot;Hannibal Lecter&quot;</span> <span class="s">&quot;Patrick Bateman&quot;</span><span class="p">)</span>
+<span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;Dexter Morgan&quot;</span>, <span class="s">&quot;Hannibal Lecter&quot;</span>, <span class="s">&quot;Patrick Bateman&quot;</span><span class="p">)</span>
+<span class="c1">;; Os apóstrofos na frente das listas precisam estar lá.</span>
+<span class="c1">;; Você entenderá o porquê.</span>
+<span class="c1">;; À propósito, ; serve para iniciar um comentário que se</span>
+<span class="c1">;; estende até o fim da linha</span></code></pre></div>
+
+<p><em>Mas espera aí? O exemplo do <strong>hello world</strong> se parece muito com isso, não é?</em>
+Pergunta o intrigado leitor. Continue assim, leitor. Você está indo bem.</p>
+
+<figure><img src="/imgs/lists-everywhere.jpg" alt="Listas. Listas por toda parte" /><figcaption>Listas. Listas por toda parte</figcaption></figure>
+
+<p>Aí está a beleza da coisa. Em Clojure (e em todo <em>Lisp</em>) utilizamos listas para
+escrever código. O que acontece é que ao avaliar uma lista o primeiro elemento
+deve ser uma <em>função</em> (ou, como nesse caso, um nome associado a uma função) e os
+outros elementos serão os argumentos dela. Essa é a causa dos apóstrofos no
+início das listas de nomes acima. O primeiro elemento, uma <em>string</em>, não pode
+ser executado como uma função, então precisamos indicar que esta trata-se apenas
+de uma lista de valores. Mais exemplos:</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="nb">+ </span><span class="mi">40</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">; =&gt; 42</span>
+<span class="p">(</span><span class="nb">- </span><span class="mi">9</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">; =&gt; 5</span></code></pre></div>
+
+<p><em>OK. Isso é estranho!</em></p>
+
+<p>Sim, à primeira vista é estranho mesmo, mas você se acostuma rápido. A sintaxe
+dos <em>Lisps</em> é muito simples: todas as operações são feitas utilizando-se funções
+através da avaliação de listas<sup id="fnref:2"><a href="#fn:2" class="footnote">2</a></sup>. No exemplo acima, o <code class="highlight language-clojure"><span class="nv">+</span></code>
+e o <code class="highlight language-clojure"><span class="nv">-</span></code> não são operadores especiais com sintaxe especial,
+como em outras linguagens. São apenas funções incluídas na biblioteca padrão da
+linguagem inteligentemente nomeadas para, adivinhe, somar e subtrair,
+respectivamente.</p>
+
+<p>Essa sintaxe única traz algumas vantagens além da óbvia de ser fácil de
+memorizar:</p>
+
+<ul>
+  <li>
+    <p>É possível ter mais que 2 operandos em cada operação.</p>
+
+    <div class="highlight"><pre><code class="language-clojure"> <span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span> <span class="c1">;; =&gt; 15</span>
+ <span class="c1">;; o mesmo que 1 + 2 + 3 + 4 + 5 em outras linguagens</span>
+ <span class="p">(</span><span class="nb">&lt; </span><span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span> <span class="nv">w</span><span class="p">)</span>
+ <span class="c1">;; em outras linguagens: (x &lt; y) and (y &lt; z) and (z &lt; w)</span></code></pre></div>
+  </li>
+  <li>
+    <p>Não é preciso decorar tabelas de precedências, uma vez que todas as expressões
+são bem delimitadas e sem riscos de ambiguidade.</p>
+
+    <div class="highlight"><pre><code class="language-javascript"> <span class="c1">// JavaScript</span>
+ <span class="mi">4</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="mi">10</span> <span class="c1">// = 30</span>
+ <span class="mi">10</span> <span class="o">+</span> <span class="mi">5</span> <span class="o">*</span> <span class="mi">4</span> <span class="c1">// = 30.</span>
+ <span class="c1">// talvez não o que se espere lendo da esquerda pra direita</span>
+ <span class="p">(</span><span class="mi">10</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span> <span class="c1">// = 60.</span>
+ <span class="c1">// precisamos delimitar a soma pra que ela ocorra primeiro</span></code></pre></div>
+
+    <div class="highlight"><pre><code class="language-clojure"> <span class="c1">;; Clojure</span>
+ <span class="p">(</span><span class="nb">* </span><span class="p">(</span><span class="nb">+ </span><span class="mi">10</span> <span class="mi">5</span><span class="p">)</span> <span class="mi">4</span><span class="p">)</span> <span class="c1">; não há como ser ambíguo aqui ...</span>
+ <span class="p">(</span><span class="nb">* </span><span class="mi">4</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">10</span> <span class="mi">5</span><span class="p">))</span> <span class="c1">; ... mesmo trocando a ordem dos parâmetros</span></code></pre></div>
+  </li>
+  <li>
+    <p>Listas são usadas para escrever o código<sup id="fnref:3"><a href="#fn:3" class="footnote">3</a></sup> e, ao mesmo tempo, são as estruturas
+de dados utilizadas para representar o programa em tempo de execução. Este
+paralelo entre sintaxe e a estrutura interna do programa, que chamamos de
+<strong>homoiconicidade</strong>, permite que código seja criado e manipulado como <em>dados</em>.
+Linguagens homoicônicas facilitam a metaprogramação e reflexão (temas para um
+outro <em>post</em>).</p>
+  </li>
+</ul>
+
+<p>Nem tudo é vantagem. Essa sintaxe, em alguns casos, tende a acumular parênteses
+amontoados no final de grandes expressões, embora existam formas de contornar
+isso. Também é preciso um pouco de prática até se conseguir ler claramente o
+código escrito por outras pessoas (pelo menos foi o meu caso).</p>
+
+<p>Sem dúvidas, os parênteses são os principais motivos de programadores
+iniciantes (eu incluso) torcerem o nariz ao se deparar com <em>Lisp</em>, mas não tema.
+Qualquer bom editor vai te ajudar com isso.</p>
+
+<h2 id="read-eval-print-loop"><em>read-eval-print loop</em></h2>
+
+<p>Antes de continuar a descrever a linguagem, deixa eu explicar como colocar as
+mãos no compilador e testar os códigos você mesmo.</p>
+
+<p>Você pode obter a versão estável mais recente do compilador <a href="http://repo1.maven.org/maven2/org/clojure/clojure/1.7.0/clojure-1.7.0.zip">aqui</a>.
+Como eu disse, Clojure utiliza a <em>Java Virtual Machine</em> para executar seus
+programas. Este <em>zip</em> contém, entre outras coisas, o arquivo
+<code>clojure-1.7.0.jar</code>, que possui tudo o que é necessário para compilar, executar
+e testar os seus programas (considerando que você já tem a JVM instalada, caso
+contrário, vá <a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">aqui</a> primeiro).</p>
+
+<p>Para os não-iniciados no universo <em>javistico</em>, um <em>JAR</em> é um pacote pelo qual se
+distribui um executável ou biblioteca. Algo parecido com as <em>gems</em> do <em>Ruby</em>,
+<em>eggs</em> do <em>Python</em> ou os <em>crates</em> do <em>Rust</em>. Existem outras formas de obter e
+gerenciar dependências Java/Clojure (<em>Maven</em>, <em>Leiningem</em>, <em>Boot</em>, etc), mas por
+enquanto só o download é suficiente.</p>
+
+<p>Num terminal, execute o seguinte comando no mesmo diretório onde está o arquivo
+<code>clojure-1.7.0.jar</code> que você extraiu do <em>zip</em> baixado:</p>
+
+<div class="highlight"><pre><code class="language-bash">java -cp clojure-1.7.0.jar clojure.main</code></pre></div>
+
+<figure><img src="/imgs/repl.png" alt="Bem-vindo ao REPL" /><figcaption>Bem-vindo ao REPL</figcaption></figure>
+
+<p>O <em>prompt</em> que aparece, aguardando que algo seja digitado, é parte do <strong>REPL</strong>,
+ou <em>Read-Print-Eval Loop</em>, uma ferramenta distribuída junto com o compilador
+que permite a execução interativa de código. Ele <em>lê</em> o comando digitado,
+<em>avalia</em> e executa as expressões, <em>imprime</em> o resultador e <em>volta</em> a esperar
+outro comando. <em>REPLs</em> não são exclusividades dos Lisps, mas costumam integrar
+o <em>workflow</em> dos programadores dessas linguagens mais que os outros. Vamos
+tentar uma das expressões que já mostrei: digite <code class="highlight language-clojure"><span class="p">(</span><span class="nb">+ </span><span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span><span class="p">)</span></code>
+e tecle <em>enter</em>.</p>
+
+<figure><img src="/imgs/repl-ex1.png" alt="Exemplo 1: uma calculadora bem incomum" /><figcaption>Exemplo 1: uma calculadora bem incomum</figcaption></figure>
+
+<p>Expressão lida (<em>read</em>), avaliada/executada (<em>eval</em>), resultado impresso
+(<em>print</em>) e prompt esperando uma nova expressão (<em>loop</em>). Tente usar outras
+funções matemáticas (<code class="highlight language-clojure"><span class="nv">+</span></code>, <code class="highlight language-clojure"><span class="nv">-</span></code>,
+<code class="highlight language-clojure"><span class="nv">/</span></code>, <code class="highlight language-clojure"><span class="nv">*</span></code>), lógicas
+(<code class="highlight language-clojure"><span class="nv">&gt;</span></code>, <code class="highlight language-clojure"><span class="nv">&lt;</span></code>, <code class="highlight language-clojure"><span class="nv">&gt;=</span></code>,
+<code class="highlight language-clojure"><span class="nv">&lt;=</span></code>), de entrada de dados (<code class="highlight language-clojure"><span class="nv">read-line</span></code>)
+e de saída (<code class="highlight language-clojure"><span class="nv">print</span></code>, <code class="highlight language-clojure"><span class="nv">println</span></code>). Para
+interromper o REPL, pressione <code>Control+C</code> ou <code>Control+D</code>.</p>
+
+<h2 id="formas-especiais">Formas especiais</h2>
+
+<p>De volta ao conteúdo principal. Agora que já entendemos a ideia de listas serem
+avaliadas como chamadas de funções, podemos escrever qualquer tipo de programa
+em Clojure, certo? Bem, nem tanto.</p>
+
+<p>Mais cedo do que você pensa seu programa precisará de mais poderes, como decidir
+se precisa ou não executar certa função ou repetir uma execução várias vezes.
+Para tal, existem <strong>formas<sup id="fnref:4"><a href="#fn:4" class="footnote">4</a></sup> especiais</strong> que alteram a maneira como
+o compilador/interpretador avalia as expressões lidas. Não irei descrever todas
+aqui hoje (não são muitas), só o necessário para começar.</p>
+
+<h3 id="if">if</h3>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="mi">1</span> <span class="mi">1</span><span class="p">)</span> <span class="s">&quot;Yea!&quot;</span> <span class="s">&quot;Nay!&quot;</span><span class="p">)</span>
+<span class="c1">;; = é a função usada para comparar valores, equivalente ao</span>
+<span class="c1">;; operador == da maioria das outras linguagens</span></code></pre></div>
+
+<p>O <strong>if</strong> é a forma usada para avaliação condicional de expressões. Ele tem a
+mesma cara das outras funções mostradas até agora, né? Essa é a ideia. É uma
+lista com 4 elementos, o que poder ser entendido como uma função que recebe 3
+argumentos. Porém, diferente de outras listas, nem todos os seus elementos
+serão avaliados.</p>
+
+<p>Se o resultado da avaliação do primeiro argumento for <em>verdadeiro</em><sup id="fnref:5"><a href="#fn:5" class="footnote">5</a></sup> o valor
+da forma como um todo será o resultado da avaliação do segundo argumento
+e o terceiro argumento nunca será avaliado. Se o primeiro argumento for algo que
+indique falsidade ocorrerá o inverso. O interpretador irá ignorar o segundo
+argumento e avaliar o terceiro. Em Ruby seria algo assim:</p>
+
+<div class="highlight"><pre><code class="language-ruby"><span class="k">if</span> <span class="mi">1</span> <span class="o">==</span> <span class="mi">1</span>
+  <span class="s2">&quot;Yea!&quot;</span>
+<span class="k">else</span>
+  <span class="s2">&quot;Nay!&quot;</span>
+<span class="k">end</span></code></pre></div>
+
+<h3 id="let">let</h3>
+
+<p>A essa altura você já está se perguntando porque não declarei nenhuma variável
+nos exemplos mostrados. É que tem uma pegadinha aqui. Em Clojure você não
+<em>atribui valores</em> a variáveis como você pode estar acostumado. Você <em>associa um
+valor</em> a um nome. Não parece, mas tem uma diferença. Em <em>C</em>, por exemplo, você
+pode atribuir novos valores a uma variável pré-existente:</p>
+
+<div class="highlight"><pre><code class="language-C"><span class="cp">#include &lt;stdio.h&gt;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">number</span><span class="p">,</span> <span class="n">number</span><span class="p">);</span>
+  <span class="n">number</span> <span class="o">=</span> <span class="mi">9999</span><span class="p">;</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">&quot;%p: %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">number</span><span class="p">,</span> <span class="n">number</span><span class="p">);</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// a saída seria algo como:</span>
+<span class="c1">// 0x7fff5717e648: 0</span>
+<span class="c1">// 0x7fff5717e648: 9999</span></code></pre></div>
+
+<p>Nesse exemplo dá pra ver que a variável <code class="highlight language-c"><span class="n">number</span></code> é uma referência
+sempre à posição da memória <code>0x7fff5717e648</code>, mesmo depois de mudarmos o valor.
+Caso duas <em>threads</em> estivessem lendo e/ou alterando essa variável
+o comportamento seria imprevisível.</p>
+
+<p>Clojure evita esse problema impedindo — ou pelo menos dificultando — que você
+altere o valor de variáveis. Você cria associações, ou <em>bindings</em>, entre nomes e
+valores para um escopo. Isso é feito usando a forma especial <strong>let</strong>.</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">a</span> <span class="mi">10</span>
+      <span class="nv">b</span> <span class="mi">20</span>
+      <span class="nv">c</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span><span class="p">)]</span> <span class="c1">;; cada binding tem acesso aos bindings anteriores</span>
+  <span class="p">(</span><span class="nb">println </span><span class="p">(</span><span class="nb">+ </span><span class="nv">a</span> <span class="nv">b</span> <span class="nv">c</span><span class="p">)))</span>
+<span class="c1">;; =&gt; 60</span></code></pre></div>
+
+<p>Dois (ou mais) argumentos são passados para o <code class="highlight language-clojure"><span class="nv">let</span></code>. Um
+<em>vetor</em><sup id="fnref:6"><a href="#fn:6" class="footnote">6</a></sup> de <em>bindings</em>, composto de pares símbolo/valor, e um <em>corpo</em>, que
+é o conjunto de expressões que forma o escopo no qual os símbolos estarão
+associados aos valores mencionados. O resultado da última expressão do corpo
+será o valor do <code class="highlight language-clojure"><span class="nv">let</span></code> como um todo.</p>
+
+<h3 id="def">def</h3>
+
+<p>Eu meio que <em>menti</em> quando disse que a única forma de dar nomes à valores
+é através de <code class="highlight language-clojure"><span class="nv">let</span></code>. Você vai precisar dar nomes à dados que
+viverão por todo o tempo de execução de um programa e não um pequeno escopo.
+Imagine as funções que você define, por exemplo, ou valores que são considerados
+<em>constantes</em>.</p>
+
+<p>Para <strong>definir</strong> esses nomes existe a forma especial <strong>def</strong>. Nome bem óbvio,
+né? Ela é usada da seguinte maneira:</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="k">def </span><span class="nv">pi</span> <span class="mf">3.14</span><span class="p">)</span> <span class="c1">;; um valor muito pouco preciso de 𝛑</span>
+<span class="c1">;; =&gt; #&#39;user/pi [I]</span>
+<span class="nv">pi</span>
+<span class="c1">;; =&gt; 3.14 [II]</span>
+<span class="p">(</span><span class="k">def </span><span class="nv">three-pi-over-two</span> <span class="p">(</span><span class="nb">/ </span><span class="p">(</span><span class="nb">* </span><span class="mi">3</span> <span class="nv">pi</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c1">;; =&gt; #&#39;user/three-pi-over-two [III]</span>
+<span class="nv">three-pi-over-two</span>
+<span class="c1">;; =&gt; 4.71 [IV]</span></code></pre></div>
+
+<p>Sem mistério. Uma lista de três elementos: o símbolo <code>def</code>, um símbolo que
+representa o nome da variável <strong>global</strong> sendo criada e uma expressão que será
+avaliada e o seu resultado atribuído à variável. Observe que o <code>def</code> retorna
+a variável em si (indicado pelos caracteres <code>#'</code><sup id="fnref:7"><a href="#fn:7" class="footnote">7</a></sup> em <code>[I]</code> e <code>[III]</code>) e não
+o seu valor. Observe também que os nomes das variáveis retornadas são iniciados
+por <code>user/</code>. Esse é o nome do <strong>namespace</strong> no qual ela foi definida.
+<em>Namespaces</em> são utilizados para agrupar funções relacionadas e evitar conflitos
+de nomes de variáveis. Mais sobre <em>namespaces</em> em outra oportunidade.</p>
+
+<p>Depois das definições, quaisquer utilizações dos símbolos usados resulta na
+avaliação do mesmo como o valor armazenado na variável correspondente, como pode
+ser visto em <code>[II]</code> e <code>[IV]</code>.</p>
+
+<h3 id="fn">fn</h3>
+
+<p>Como não poderia deixa de ser numa linguagem <strong>funcional</strong>, é preciso existir
+uma forma de definir funções. Isso é trabalho do <strong>fn</strong> (Clojure tem uma
+filosofia de que se uma função ou macro será muito utilizada ele deve ter um
+nome bem curto, por isso, <code class="highlight language-clojure"><span class="nv">fn</span></code> e não <code>function</code>, por
+exemplo).</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">name</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&quot;Hello, &quot;</span> <span class="nv">name</span><span class="p">))</span>
+<span class="c1">;; =&gt; #object[user$eval1$fn__2 0x465232e9 &quot;user$eval1$fn__2@465232e9&quot;]</span></code></pre></div>
+
+<p>Ao entrar a expressão acima no REPL ele devolverá algo bem estranho como
+mostrado acima. Não se preocupe com isso. <code>fn</code> retorna uma função e o REPL tenta
+imprimi-la. Essa é a representação interna dela e não é muito útil para nós.</p>
+
+<p>Nenhuma novidade na sintaxe. De novo temos uma lista, agora com 3 (ou mais)
+elementos. O segundo é um vetor de <em>bindings</em>, semelhante ao do
+<code class="highlight language-clojure"><span class="nv">let</span></code>, mas sem os valores. Esses valores só serão informados
+quando executarmos a função. À partir do terceiro elemento temos o corpo da
+função. Também como no <code class="highlight language-clojure"><span class="nv">let</span></code>, o corpo compõe o escopo onde
+os <em>bindings</em> estarão acessíveis e o valor da avaliação da última expressão do
+corpo será o valor de retorno da função. No entanto, esse corpo não é executado
+de imediado, apenas quando a função for “chamada”.</p>
+
+<p><em>Só tem um problema, como eu chamo essa função?</em> Mais uma vez surpreende o
+antenado leitor fazendo a pergunta certa.</p>
+
+<p>Já sabemos que uma função será avaliada quando for o primeiro elemento de uma
+lista, então podemos fazer isso:</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">name</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&quot;Hello, &quot;</span> <span class="nv">name</span><span class="p">))</span> <span class="s">&quot;Dexter&quot;</span><span class="p">)</span>
+<span class="c1">;; =&gt; &quot;Hello, Dexter&quot;</span>
+<span class="p">((</span><span class="k">fn </span><span class="p">[</span><span class="nv">name</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&quot;Hello, &quot;</span> <span class="nv">name</span><span class="p">))</span> <span class="s">&quot;Jack&quot;</span><span class="p">)</span>
+<span class="c1">;; =&gt; &quot;Hello, Jack&quot;</span></code></pre></div>
+
+<p>Mas isso não é muito prático nem reusável, afinal nas duas execuções duas
+cópias distintas da função são criadas. Sem falar que seria loucura ficar
+copiando funções de uma lado pro outro. Podemos fazer melhor. E se você está
+mesmo acompanhando o post — ou já programou em JavaScript<sup id="fnref:8"><a href="#fn:8" class="footnote">8</a></sup> — sabe muito
+bem o que fazer:</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="k">def </span><span class="nv">greet</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">name</span><span class="p">]</span> <span class="p">(</span><span class="nb">str </span><span class="s">&quot;Hello, &quot;</span> <span class="nv">name</span><span class="p">)))</span>
+<span class="c1">;; =&gt; #&#39;user/greet</span>
+<span class="p">(</span><span class="nf">greet</span> <span class="s">&quot;Dexter&quot;</span><span class="p">)</span>
+<span class="c1">;; =&gt; &quot;Hello, Dexter&quot;</span>
+<span class="p">(</span><span class="nf">greet</span> <span class="s">&quot;Jack&quot;</span><span class="p">)</span>
+<span class="c1">;; =&gt; &quot;Hello, Jack&quot;</span></code></pre></div>
+
+<p>Lembra da <em>homoiconicidade</em>? Código é dado, e como tal pode ser associado
+a nomes como qualquer outro tipo. E a necessidade de se atribuir nomes a funções
+é tão comum que existe uma forma ainda mais prática de se fazer isso:</p>
+
+<div class="highlight"><pre><code class="language-clojure"><span class="p">(</span><span class="kd">defn </span><span class="nv">greet</span> <span class="p">[</span><span class="nv">name</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">str </span><span class="s">&quot;Hello, &quot;</span> <span class="nv">name</span><span class="p">))</span>
+<span class="c1">;; =&gt; #&#39;user/greet</span></code></pre></div>
+
+<p>Compare com o exemplo anterior. A criação da função, com
+<code class="highlight language-clojure"><span class="nv">fn</span></code>, e a atribuição do nome, com <code class="highlight language-clojure"><span class="nv">def</span></code>,
+podem ser reduzidas para apenas um passo com a macro <code class="highlight language-clojure"><span class="nv">defn</span></code>.</p>
+
+<h2 id="cenas-dos-prximos-captulos">Cenas dos próximos capítulos</h2>
+
+<p>Se você chegou até aqui, acredito que esteja realmente interessado em Clojure
+e espero que minhas explicações tenham sido claras o suficiente (se não foram,
+fique à vontade para pedir esclarecimentos e deixar sugestões nos comentários).</p>
+
+<p>Este <em>post</em> não chegou nem a arranhar a superfície da linguagem, porém já ficou
+grande o bastante para darmos por encerrado o dia de trabalho. Mas não sem antes
+deixar registrado o que vem por ai (sem pretensão de fazer uma lista exaustiva
+nem definir alguma ordem ou periodicidade):</p>
+
+<ul>
+  <li>listas, vetores, conjuntos e mapas;</li>
+  <li>loops e recursividade;</li>
+  <li>organizando código em <em>namespaces</em>;</li>
+  <li>fazendo as coisas do jeito funcional;</li>
+  <li>Clojure(Script) conversando com o mundo Java(Script);</li>
+  <li>macros: código que manipula código;</li>
+  <li>desenvolvimento web com Clojure;</li>
+  <li>ferramentas de <em>build</em>: <code>leiningen</code> e <code>boot</code>;</li>
+  <li>como escrever testes;</li>
+  <li>Single Page Applications com ClojureScript (e React?);</li>
+  <li>sua sugestão.</li>
+</ul>
+
+<p>Até breve (espero).</p>
+
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Existem também implementações que compilam para a <a href="http://github.com/clojure/clojure-clr">CLR</a> e para <a href="http://github.com/clojure/clojurescript">JavaScript</a>. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:2">
+      <p>Nem sempre o primeiro elemento é uma função. Existem também <em>macros</em> e <em>formas especiais</em>, mas a sintaxe não muda. Podemos generalizar e dizer que tudo são funções. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:3">
+      <p>Tradicionalmente Lisps usam apenas listas para representar código. Clojure usa outras estruturas, como <em>vetores</em> e <em>mapas</em>. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:4">
+      <p>Uma forma é qualquer coisa que possa avaliada. Existe uma sútil diferença entre <em>formas</em> e <em>expressões</em>, mas para todos os efeitos podemos usas as duas palavras indistintamente. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:5">
+      <p>Quaisquer valores diferentes de <code>nil</code> e <code>false</code> serão considerados verdadeiros numa avaliação lógica. É o comportamento já conhecido por programadores Ruby. Em C <code>0</code> é considerado falso, em Clojure não. Assim como listas vazias <code>'()</code>, que também indicam falsidade em outros Lisps e indicam verdade em Clojure. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:6">
+      <p>Mais sobre vetores em outra oportunidade. Por enquanto basta saber que são como listas, mas tem colchetes <code>[]</code>, no lugar dos parênteses <code>()</code>. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:7">
+      <p><code>#'</code> é um exemplo de uma <em>macro de leitura</em>. Simplesmente uma forma mais sucinta de executar alguma função. Nesse caso <code>#'user/pi</code> equivale a <code>(var user/pi)</code>. Existem várias outras macros de leitura, que devem ser exploradas em <em>posts</em> mais apropriados. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+    </li>
+    <li id="fn:8">
+      <p>É muito comum em JavaScript associarmos funções sem nome a variáveis: <code class="highlight language-javascript"><span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span> <span class="p">}</span></code> <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+<div class="so_comments" data-sitename="sparse-thoughts" data-thread_url="/comecando-com-clojure"></div>
+<script src="//api.solidopinion.com/widget/embed.js" async="async"></script>
+
+    <footer>
+    Samuel Flores
+    • <a href="http://github.com/samflores">Github</a>
+    • <a href="http://twitter.com/samflores">Twitter</a>
+</footer>
+
+    <script src="/js/ffo.js"></script>
+<script>
+(function(i,s,o,g,r,a,m){
+    i['GoogleAnalyticsObject']=r;
+    i[r] = i[r] || function(){
+        (i[r].q = i[r].q||[]).push(arguments)
+    },
+    i[r].l = 1*new Date();
+    a = s.createElement(o),
+    m = s.getElementsByTagName(o)[0];
+    a.async=1;
+    a.src=g;
+    m.parentNode.insertBefore(a,m)
+}(window,document,'script','//www.google-analytics.com/analytics.js','ga'));
+
+ga('create', 'UA-46715735-2', 'auto');
+ga('send', 'pageview');
+
+(function(w,d,p,f,c,q,e){
+    o=function(s){
+        q=d.querySelectorAll(s);
+        for(e=0;e<q.length;e++){q[e].classList.add('ok')}
+    }
+    f=function(t,s){
+        new w.FontFaceObserver(t,{}).check(null, 3000).then(o(s));
+    }
+    for(var t in p){f(t,p[t]);}
+}(window,document,{
+    "Goudy Bookletter 1911": "body",
+    "Anonymous Pro": "pre"
+}));
+</script>
+
+</body>
+
+</html>
