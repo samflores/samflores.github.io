@@ -6,9 +6,9 @@
 </description>
         <link>http://blog.samflor.es/</link>
         <atom:link href="http://blog.samflor.es/feed.xml" rel="self" type="application/rss+xml"/>
-        <pubDate>Tue, 08 Sep 2015 10:48:32 -0300</pubDate>
-        <lastBuildDate>Tue, 08 Sep 2015 10:48:32 -0300</lastBuildDate>
-        <generator>Jekyll v2.4.0</generator>
+        <pubDate>Fri, 04 Aug 2017 12:16:21 -0300</pubDate>
+        <lastBuildDate>Fri, 04 Aug 2017 12:16:21 -0300</lastBuildDate>
+        <generator>Jekyll v3.4.5</generator>
         
         <item>
             <title>Começando com Clojure</title>
@@ -28,7 +28,7 @@ be powerful and elegant. Once you learn Lisp, you will understand what is
 lacking in most other languages.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h2 id=&quot;o-que--clojure&quot;&gt;O que é Clojure?&lt;/h2&gt;
+&lt;h2 id=&quot;o-que-é-clojure&quot;&gt;O que é Clojure?&lt;/h2&gt;
 
 &lt;p&gt;Clojure é um &lt;em&gt;Lisp&lt;/em&gt; (eu sei que já deu pra entender isso) e compartilha
 características comuns à maioria deles, ou seja, Clojure é uma linguagem:&lt;/p&gt;
@@ -82,7 +82,7 @@ são consideradas &lt;em&gt;whitespace&lt;/em&gt; em Clojure — e você terá u
 &lt;span class=&quot;o&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;Dexter Morgan&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&amp;quot;Hannibal Lecter&amp;quot;&lt;/span&gt;, &lt;span class=&quot;s&quot;&gt;&amp;quot;Patrick Bateman&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;;; Os apóstrofos na frente das listas precisam estar lá.&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;;; Você entenderá o porquê.&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;;; À propósito, ; serve para iniciar um comentário que se&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;;; A propósito, ; serve para iniciar um comentário que se&lt;/span&gt;
 &lt;span class=&quot;c1&quot;&gt;;; estende até o fim da linha&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;em&gt;Mas espera aí? O exemplo do &lt;strong&gt;hello world&lt;/strong&gt; se parece muito com isso, não é?&lt;/em&gt;
@@ -183,7 +183,7 @@ enquanto só o download é suficiente.&lt;/p&gt;
 &lt;figure&gt;&lt;img src=&quot;/imgs/repl.png&quot; alt=&quot;Bem-vindo ao REPL&quot; /&gt;&lt;figcaption&gt;Bem-vindo ao REPL&lt;/figcaption&gt;&lt;/figure&gt;
 
 &lt;p&gt;O &lt;em&gt;prompt&lt;/em&gt; que aparece, aguardando que algo seja digitado, é parte do &lt;strong&gt;REPL&lt;/strong&gt;,
-ou &lt;em&gt;Read-Print-Eval Loop&lt;/em&gt;, uma ferramenta distribuída junto com o compilador
+ou &lt;em&gt;Read-Eval-Print Loop&lt;/em&gt;, uma ferramenta distribuída junto com o compilador
 que permite a execução interativa de código. Ele &lt;em&gt;lê&lt;/em&gt; o comando digitado,
 &lt;em&gt;avalia&lt;/em&gt; e executa as expressões, &lt;em&gt;imprime&lt;/em&gt; o resultado e &lt;em&gt;volta&lt;/em&gt; a esperar
 outro comando. &lt;em&gt;REPLs&lt;/em&gt; não são exclusividades dos Lisps, mas costumam integrar
@@ -246,7 +246,7 @@ nos exemplos mostrados. É que tem uma pegadinha aqui. Em Clojure você não
 valor&lt;/em&gt; a um nome. Não parece, mas tem uma diferença. Em &lt;em&gt;C&lt;/em&gt;, por exemplo, você
 pode atribuir novos valores a uma variável pré-existente:&lt;/p&gt;
 
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;&lt;/span&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-C&quot;&gt;&lt;span class=&quot;cp&quot;&gt;#include&lt;/span&gt; &lt;span class=&quot;cpf&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;span class=&quot;cp&quot;&gt;&lt;/span&gt;
 
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;number&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
@@ -304,11 +304,11 @@ né? Ela é usada da seguinte maneira:&lt;/p&gt;
 &lt;p&gt;Sem mistério. Uma lista de três elementos: o símbolo &lt;code&gt;def&lt;/code&gt;, um símbolo que
 representa o nome da variável &lt;strong&gt;global&lt;/strong&gt; sendo criada e uma expressão que será
 avaliada e o seu resultado atribuído à variável. Observe que o &lt;code&gt;def&lt;/code&gt; retorna
-a variável em si (indicado pelos caracteres &lt;code&gt;#&#39;&lt;/code&gt;&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; em &lt;code&gt;[I]&lt;/code&gt; e &lt;code&gt;[III]&lt;/code&gt;) e não
+a variável em si (indicado pelos caracteres &lt;code&gt;#'&lt;/code&gt;&lt;sup id=&quot;fnref:7&quot;&gt;&lt;a href=&quot;#fn:7&quot; class=&quot;footnote&quot;&gt;7&lt;/a&gt;&lt;/sup&gt; em &lt;code&gt;[I]&lt;/code&gt; e &lt;code&gt;[III]&lt;/code&gt;) e não
 o seu valor. Observe também que os nomes das variáveis retornadas são iniciados
 por &lt;code&gt;user/&lt;/code&gt;. Esse é o nome do &lt;strong&gt;namespace&lt;/strong&gt; no qual ela foi definida.
 &lt;em&gt;Namespaces&lt;/em&gt; são utilizados para agrupar funções relacionadas e evitar conflitos
-de nomes de variáveis. Mais sobre &lt;em&gt;namespaces&lt;/em&gt; em outra oportunidade. &lt;/p&gt;
+de nomes de variáveis. Mais sobre &lt;em&gt;namespaces&lt;/em&gt; em outra oportunidade.&lt;/p&gt;
 
 &lt;p&gt;Depois das definições, quaisquer utilizações dos símbolos usados resulta na
 avaliação do mesmo como o valor armazenado na variável correspondente, como pode
@@ -375,7 +375,7 @@ a nomes como qualquer outro tipo. E a necessidade de se atribuir nomes a funçõ
 &lt;code class=&quot;highlight language-clojure&quot;&gt;&lt;span class=&quot;nv&quot;&gt;fn&lt;/span&gt;&lt;/code&gt;, e a atribuição do nome, com &lt;code class=&quot;highlight language-clojure&quot;&gt;&lt;span class=&quot;nv&quot;&gt;def&lt;/span&gt;&lt;/code&gt;,
 podem ser reduzidas para apenas um passo com a macro &lt;code class=&quot;highlight language-clojure&quot;&gt;&lt;span class=&quot;nv&quot;&gt;defn&lt;/span&gt;&lt;/code&gt;.&lt;/p&gt;
 
-&lt;h2 id=&quot;cenas-dos-prximos-captulos&quot;&gt;Cenas dos próximos capítulos&lt;/h2&gt;
+&lt;h2 id=&quot;cenas-dos-próximos-capítulos&quot;&gt;Cenas dos próximos capítulos&lt;/h2&gt;
 
 &lt;p&gt;Se você chegou até aqui, acredito que esteja realmente interessado em Clojure
 e espero que minhas explicações tenham sido claras o suficiente (se não foram,
@@ -407,35 +407,35 @@ nem definir alguma ordem ou periodicidade):&lt;/p&gt;
 &lt;div class=&quot;footnotes&quot;&gt;
   &lt;ol&gt;
     &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;Existem também implementações que compilam para a &lt;a href=&quot;http://github.com/clojure/clojure-clr&quot;&gt;CLR&lt;/a&gt; e para &lt;a href=&quot;http://github.com/clojure/clojurescript&quot;&gt;JavaScript&lt;/a&gt;. &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Existem também implementações que compilam para a &lt;a href=&quot;http://github.com/clojure/clojure-clr&quot;&gt;CLR&lt;/a&gt; e para &lt;a href=&quot;http://github.com/clojure/clojurescript&quot;&gt;JavaScript&lt;/a&gt;.&amp;nbsp;&lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;Nem sempre o primeiro elemento é uma função. Existem também &lt;em&gt;macros&lt;/em&gt; e &lt;em&gt;formas especiais&lt;/em&gt;, mas a sintaxe não muda. Podemos generalizar e dizer que tudo são funções. &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Nem sempre o primeiro elemento é uma função. Existem também &lt;em&gt;macros&lt;/em&gt; e &lt;em&gt;formas especiais&lt;/em&gt;, mas a sintaxe não muda. Podemos generalizar e dizer que tudo são funções.&amp;nbsp;&lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;Tradicionalmente Lisps usam apenas listas para representar código. Clojure usa outras estruturas, como &lt;em&gt;vetores&lt;/em&gt; e &lt;em&gt;mapas&lt;/em&gt;. &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Tradicionalmente Lisps usam apenas listas para representar código. Clojure usa outras estruturas, como &lt;em&gt;vetores&lt;/em&gt; e &lt;em&gt;mapas&lt;/em&gt;.&amp;nbsp;&lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:4&quot;&gt;
-      &lt;p&gt;Uma forma é qualquer coisa que possa avaliada. Existe uma sútil diferença entre &lt;em&gt;formas&lt;/em&gt; e &lt;em&gt;expressões&lt;/em&gt;, mas para todos os efeitos podemos usas as duas palavras indistintamente. &lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Uma forma é qualquer coisa que possa avaliada. Existe uma sútil diferença entre &lt;em&gt;formas&lt;/em&gt; e &lt;em&gt;expressões&lt;/em&gt;, mas para todos os efeitos podemos usas as duas palavras indistintamente.&amp;nbsp;&lt;a href=&quot;#fnref:4&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:5&quot;&gt;
-      &lt;p&gt;Quaisquer valores diferentes de &lt;code&gt;nil&lt;/code&gt; e &lt;code&gt;false&lt;/code&gt; serão considerados verdadeiros numa avaliação lógica. É o comportamento já conhecido por programadores Ruby. Em C &lt;code&gt;0&lt;/code&gt; é considerado falso, em Clojure não. Assim como listas vazias &lt;code&gt;&#39;()&lt;/code&gt;, que também indicam falsidade em outros Lisps e indicam verdade em Clojure. &lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Quaisquer valores diferentes de &lt;code&gt;nil&lt;/code&gt; e &lt;code&gt;false&lt;/code&gt; serão considerados verdadeiros numa avaliação lógica. É o comportamento já conhecido por programadores Ruby. Em C &lt;code&gt;0&lt;/code&gt; é considerado falso, em Clojure não. Assim como listas vazias &lt;code&gt;'()&lt;/code&gt;, que também indicam falsidade em outros Lisps e indicam verdade em Clojure.&amp;nbsp;&lt;a href=&quot;#fnref:5&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:6&quot;&gt;
-      &lt;p&gt;Mais sobre vetores em outra oportunidade. Por enquanto basta saber que são como listas, mas tem colchetes &lt;code&gt;[]&lt;/code&gt;, no lugar dos parênteses &lt;code&gt;()&lt;/code&gt;. &lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;Mais sobre vetores em outra oportunidade. Por enquanto basta saber que são como listas, mas tem colchetes &lt;code&gt;[]&lt;/code&gt;, no lugar dos parênteses &lt;code&gt;()&lt;/code&gt;.&amp;nbsp;&lt;a href=&quot;#fnref:6&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:7&quot;&gt;
-      &lt;p&gt;&lt;code&gt;#&#39;&lt;/code&gt; é um exemplo de uma &lt;em&gt;macro de leitura&lt;/em&gt;. Simplesmente uma forma mais sucinta de executar alguma função. Nesse caso &lt;code&gt;#&#39;user/pi&lt;/code&gt; equivale a &lt;code&gt;(var user/pi)&lt;/code&gt;. Existem várias outras macros de leitura, que devem ser exploradas em &lt;em&gt;posts&lt;/em&gt; mais apropriados. &lt;a href=&quot;#fnref:7&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;code&gt;#'&lt;/code&gt; é um exemplo de uma &lt;em&gt;macro de leitura&lt;/em&gt;. Simplesmente uma forma mais sucinta de executar alguma função. Nesse caso &lt;code&gt;#'user/pi&lt;/code&gt; equivale a &lt;code&gt;(var user/pi)&lt;/code&gt;. Existem várias outras macros de leitura, que devem ser exploradas em &lt;em&gt;posts&lt;/em&gt; mais apropriados.&amp;nbsp;&lt;a href=&quot;#fnref:7&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
     &lt;li id=&quot;fn:8&quot;&gt;
-      &lt;p&gt;É muito comum em JavaScript associarmos funções sem nome a variáveis: &lt;code class=&quot;highlight language-javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;greet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello, &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt; &lt;a href=&quot;#fnref:8&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+      &lt;p&gt;É muito comum em JavaScript associarmos funções sem nome a variáveis: &lt;code class=&quot;highlight language-javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;greet&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hello, &amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&amp;nbsp;&lt;a href=&quot;#fnref:8&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
     &lt;/li&gt;
   &lt;/ol&gt;
 &lt;/div&gt;
 </description>
             <pubDate>Mon, 07 Sep 2015 21:50:00 -0300</pubDate>
-            <link>http://blog.samflor.es/comecando-com-clojure</link>
-            <guid isPermaLink="true">http://blog.samflor.es/comecando-com-clojure</guid>
+            <link>http://blog.samflor.es/comecando-com-clojure/</link>
+            <guid isPermaLink="true">http://blog.samflor.es/comecando-com-clojure/</guid>
             
             
             <category>clojure</category>

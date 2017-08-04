@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Goudy+Bookletter+1911|Anonymous+Pro">
     <link rel="stylesheet" href="/css/main.css">
-    <link rel="canonical" href="http://blog.samflor.es/comecando-com-clojure">
+    <link rel="canonical" href="http://blog.samflor.es/comecando-com-clojure/">
     <link rel="alternate" type="application/rss+xml" title="Sparse Thoughts" href="http://blog.samflor.es/feed.xml" />
 </head>
 
@@ -42,7 +42,7 @@ be powerful and elegant. Once you learn Lisp, you will understand what is
 lacking in most other languages.</p>
 </blockquote>
 
-<h2 id="o-que--clojure">O que é Clojure?</h2>
+<h2 id="o-que-é-clojure">O que é Clojure?</h2>
 
 <p>Clojure é um <em>Lisp</em> (eu sei que já deu pra entender isso) e compartilha
 características comuns à maioria deles, ou seja, Clojure é uma linguagem:</p>
@@ -96,7 +96,7 @@ são consideradas <em>whitespace</em> em Clojure — e você terá uma lista.</p
 <span class="o">&#39;</span><span class="p">(</span><span class="s">&quot;Dexter Morgan&quot;</span>, <span class="s">&quot;Hannibal Lecter&quot;</span>, <span class="s">&quot;Patrick Bateman&quot;</span><span class="p">)</span>
 <span class="c1">;; Os apóstrofos na frente das listas precisam estar lá.</span>
 <span class="c1">;; Você entenderá o porquê.</span>
-<span class="c1">;; À propósito, ; serve para iniciar um comentário que se</span>
+<span class="c1">;; A propósito, ; serve para iniciar um comentário que se</span>
 <span class="c1">;; estende até o fim da linha</span></code></pre></div>
 
 <p><em>Mas espera aí? O exemplo do <strong>hello world</strong> se parece muito com isso, não é?</em>
@@ -197,7 +197,7 @@ enquanto só o download é suficiente.</p>
 <figure><img src="/imgs/repl.png" alt="Bem-vindo ao REPL" /><figcaption>Bem-vindo ao REPL</figcaption></figure>
 
 <p>O <em>prompt</em> que aparece, aguardando que algo seja digitado, é parte do <strong>REPL</strong>,
-ou <em>Read-Print-Eval Loop</em>, uma ferramenta distribuída junto com o compilador
+ou <em>Read-Eval-Print Loop</em>, uma ferramenta distribuída junto com o compilador
 que permite a execução interativa de código. Ele <em>lê</em> o comando digitado,
 <em>avalia</em> e executa as expressões, <em>imprime</em> o resultado e <em>volta</em> a esperar
 outro comando. <em>REPLs</em> não são exclusividades dos Lisps, mas costumam integrar
@@ -260,7 +260,7 @@ nos exemplos mostrados. É que tem uma pegadinha aqui. Em Clojure você não
 valor</em> a um nome. Não parece, mas tem uma diferença. Em <em>C</em>, por exemplo, você
 pode atribuir novos valores a uma variável pré-existente:</p>
 
-<div class="highlight"><pre><code class="language-C"><span class="cp">#include &lt;stdio.h&gt;</span>
+<div class="highlight"><pre><code class="language-C"><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -322,7 +322,7 @@ a variável em si (indicado pelos caracteres <code>#'</code><sup id="fnref:7"><a
 o seu valor. Observe também que os nomes das variáveis retornadas são iniciados
 por <code>user/</code>. Esse é o nome do <strong>namespace</strong> no qual ela foi definida.
 <em>Namespaces</em> são utilizados para agrupar funções relacionadas e evitar conflitos
-de nomes de variáveis. Mais sobre <em>namespaces</em> em outra oportunidade. </p>
+de nomes de variáveis. Mais sobre <em>namespaces</em> em outra oportunidade.</p>
 
 <p>Depois das definições, quaisquer utilizações dos símbolos usados resulta na
 avaliação do mesmo como o valor armazenado na variável correspondente, como pode
@@ -389,7 +389,7 @@ a nomes como qualquer outro tipo. E a necessidade de se atribuir nomes a funçõ
 <code class="highlight language-clojure"><span class="nv">fn</span></code>, e a atribuição do nome, com <code class="highlight language-clojure"><span class="nv">def</span></code>,
 podem ser reduzidas para apenas um passo com a macro <code class="highlight language-clojure"><span class="nv">defn</span></code>.</p>
 
-<h2 id="cenas-dos-prximos-captulos">Cenas dos próximos capítulos</h2>
+<h2 id="cenas-dos-próximos-capítulos">Cenas dos próximos capítulos</h2>
 
 <p>Se você chegou até aqui, acredito que esteja realmente interessado em Clojure
 e espero que minhas explicações tenham sido claras o suficiente (se não foram,
@@ -421,34 +421,34 @@ nem definir alguma ordem ou periodicidade):</p>
 <div class="footnotes">
   <ol>
     <li id="fn:1">
-      <p>Existem também implementações que compilam para a <a href="http://github.com/clojure/clojure-clr">CLR</a> e para <a href="http://github.com/clojure/clojurescript">JavaScript</a>. <a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
+      <p>Existem também implementações que compilam para a <a href="http://github.com/clojure/clojure-clr">CLR</a> e para <a href="http://github.com/clojure/clojurescript">JavaScript</a>.&nbsp;<a href="#fnref:1" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:2">
-      <p>Nem sempre o primeiro elemento é uma função. Existem também <em>macros</em> e <em>formas especiais</em>, mas a sintaxe não muda. Podemos generalizar e dizer que tudo são funções. <a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
+      <p>Nem sempre o primeiro elemento é uma função. Existem também <em>macros</em> e <em>formas especiais</em>, mas a sintaxe não muda. Podemos generalizar e dizer que tudo são funções.&nbsp;<a href="#fnref:2" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:3">
-      <p>Tradicionalmente Lisps usam apenas listas para representar código. Clojure usa outras estruturas, como <em>vetores</em> e <em>mapas</em>. <a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
+      <p>Tradicionalmente Lisps usam apenas listas para representar código. Clojure usa outras estruturas, como <em>vetores</em> e <em>mapas</em>.&nbsp;<a href="#fnref:3" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:4">
-      <p>Uma forma é qualquer coisa que possa avaliada. Existe uma sútil diferença entre <em>formas</em> e <em>expressões</em>, mas para todos os efeitos podemos usas as duas palavras indistintamente. <a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
+      <p>Uma forma é qualquer coisa que possa avaliada. Existe uma sútil diferença entre <em>formas</em> e <em>expressões</em>, mas para todos os efeitos podemos usas as duas palavras indistintamente.&nbsp;<a href="#fnref:4" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:5">
-      <p>Quaisquer valores diferentes de <code>nil</code> e <code>false</code> serão considerados verdadeiros numa avaliação lógica. É o comportamento já conhecido por programadores Ruby. Em C <code>0</code> é considerado falso, em Clojure não. Assim como listas vazias <code>'()</code>, que também indicam falsidade em outros Lisps e indicam verdade em Clojure. <a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
+      <p>Quaisquer valores diferentes de <code>nil</code> e <code>false</code> serão considerados verdadeiros numa avaliação lógica. É o comportamento já conhecido por programadores Ruby. Em C <code>0</code> é considerado falso, em Clojure não. Assim como listas vazias <code>'()</code>, que também indicam falsidade em outros Lisps e indicam verdade em Clojure.&nbsp;<a href="#fnref:5" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:6">
-      <p>Mais sobre vetores em outra oportunidade. Por enquanto basta saber que são como listas, mas tem colchetes <code>[]</code>, no lugar dos parênteses <code>()</code>. <a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
+      <p>Mais sobre vetores em outra oportunidade. Por enquanto basta saber que são como listas, mas tem colchetes <code>[]</code>, no lugar dos parênteses <code>()</code>.&nbsp;<a href="#fnref:6" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:7">
-      <p><code>#'</code> é um exemplo de uma <em>macro de leitura</em>. Simplesmente uma forma mais sucinta de executar alguma função. Nesse caso <code>#'user/pi</code> equivale a <code>(var user/pi)</code>. Existem várias outras macros de leitura, que devem ser exploradas em <em>posts</em> mais apropriados. <a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
+      <p><code>#'</code> é um exemplo de uma <em>macro de leitura</em>. Simplesmente uma forma mais sucinta de executar alguma função. Nesse caso <code>#'user/pi</code> equivale a <code>(var user/pi)</code>. Existem várias outras macros de leitura, que devem ser exploradas em <em>posts</em> mais apropriados.&nbsp;<a href="#fnref:7" class="reversefootnote">&#8617;</a></p>
     </li>
     <li id="fn:8">
-      <p>É muito comum em JavaScript associarmos funções sem nome a variáveis: <code class="highlight language-javascript"><span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span> <span class="p">}</span></code> <a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
+      <p>É muito comum em JavaScript associarmos funções sem nome a variáveis: <code class="highlight language-javascript"><span class="kd">var</span> <span class="nx">greet</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="s2">&quot;Hello, &quot;</span> <span class="o">+</span> <span class="nx">name</span><span class="p">;</span> <span class="p">}</span></code>&nbsp;<a href="#fnref:8" class="reversefootnote">&#8617;</a></p>
     </li>
   </ol>
 </div>
 
 </article>
-<div class="so_comments" data-sitename="sparse-thoughts" data-thread_url="/comecando-com-clojure"></div>
+<div class="so_comments" data-sitename="sparse-thoughts" data-thread_url="/comecando-com-clojure/"></div>
 <script src="//api.solidopinion.com/widget/embed.js" async="async"></script>
 
     <footer>
